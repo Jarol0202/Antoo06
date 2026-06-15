@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Antonella</title>
+    <style>
+        /* Configuración Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* FONDO ANIMADO FLUIDO */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(-45deg, #ffe4e6, #ccfbf1, #dbeafe, #fbcfe8);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            color: #334155;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Tarjeta Sólida Elegante */
+        .card {
+            background: #ffffff;
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+            text-align: center;
+            max-width: 440px;
+            width: 100%;
+            z-index: 10;
+            position: relative;
+        }
+        
+        h2 {
+            color: #0f172a;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        p {
+            color: #475569;
+            margin-bottom: 18px;
+            line-height: 1.65;
+            font-size: 0.98rem;
+        }
+        
+        /* Inputs */
+        input[type="date"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #f1f5f9;
+            border-radius: 12px;
+            font-size: 1rem;
+            margin-bottom: 24px;
+            outline: none;
+            color: #334155;
+            background: #f8fafc;
+            transition: all 0.2s ease;
+        }
+        input[type="date"]:focus {
+            border-color: #cbd5e1;
+            background: #ffffff;
+        }
+        
+        .btn-main {
+            background: #0f172a;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn-main:hover {
+            background: #020617;
+        }
+        
+        /* Transiciones rápidas */
+        .hidden {
+            display: none !important;
+        }
+        .fade-in {
+            animation: quickFadeIn 0.5s ease-out forwards;
+        }
+        @keyframes quickFadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Cuerpo de la Carta */
+        .letter-content {
+            text-align: left;
+            max-height: 52vh;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .letter-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .letter-content::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .signature {
+            margin-top: 30px;
+            color: #0f172a;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        /* Sección de Pregunta Final */
+        .forgiveness-section {
+            margin-top: 25px;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 25px;
+            text-align: center;
+        }
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+        
+        .meme-img {
+            width: 130px;
+            height: auto;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+            display: inline-block;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 60px;
+        }
+        .btn-choice {
+            padding: 14px 38px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        #btn-si {
+            background: #10b981;
+            color: white;
+        }
+        #btn-no {
+            background: #f43f5e;
+            color: white;
+        }
+
+        /* Pantalla de Éxito / Agradecimiento */
+        .success-card {
+            padding: 40px 25px;
+        }
+        .bg-emoji {
+            position: absolute;
+            font-size: 11rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .heart-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .success-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.6;
+            color: #0f172a;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0px;
+        }
+
+        /* Contenedor del Reproductor Dedicado */
+        .player-container {
+            margin-top: 25px;
+            background: #f8fafc;
+            padding: 18px 15px;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            z-index: 1;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .player-text {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 14px;
+        }
+        .player-container audio {
+            width: 100%;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- REPRODUCTOR OCULTO DE LA CARTA -->
+    <audio id="bg-music-1" src="cancion1.mp3" loop></audio>
+
+    <!-- PANTALLA 1: FILTRO DE FECHA -->
+    <div id="gatekeeper" class="card fade-in">
+        <h2>Hola Antonella</h2>
+        <p>Introduce la fecha en la cual fuimos novios.</p>
+        <input type="date" id="unlock-date">
+        <button class="btn-main" onclick="validateDate()">Ingresar</button>
+    </div>
+
+    <!-- PANTALLA 2: CONTENIDO DE LA CARTA + PREGUNTA -->
+    <div id="main-content" class="card hidden">
+        <div class="letter-content">
+            <p>Hola, Antonella. Espero que estés bien.</p>
+            
+            <p>Quiero escribirte estas palabras por última vez, no para cambiar nada ni para esperar una respuesta, sino porque siento que debo hacerlo.</p>
+            
+            <p>Con el paso del tiempo he reflexionado mucho sobre todo lo que vivimos y, sobre todo, sobre los errores que cometí contigo. Hoy puedo reconocer que te hice daño y que muchas veces actué de forma inmadura, pensando más en mí que en cómo podían afectarte mis acciones. Por eso quiero pedirte perdón de corazón.</p>
+            
+            <p>Sé que un perdón no borra lo ocurrido ni repara las heridas que una persona puede causar. También sé que el tiempo cambia a las personas, y probablemente ya no seas la misma niña que conocí. Sin embargo, siempre recordaré con cariño los momentos bonitos que compartimos, las llamadas, las risas, los videos que me dedicabas y todos esos pequeños detalles que en su momento no supe valorar como debía.</p>
+            
+            <p>Si algo deseo para ti, es que seas feliz. Que puedas confiar en las personas correctas, que encuentres tranquilidad, seguridad en ti misma y que nunca permitas que las acciones de alguien definan el valor que tienes. Porque siempre has sido una persona valiosa y mereces recibir el cariño y el respeto que quizás yo no supe darte.</p>
+            
+            <p>También quiero que sepas que nunca olvidé las cosas buenas que compartimos. A pesar de los errores y de todo lo que pasó, guardo esos recuerdos con aprecio y gratitud. Forman parte de una etapa importante de mi vida y siempre tendrán un lugar especial en mi memoria.</p>
+            
+            <p>Gracias por los momentos que vivimos, por las enseñanzas que me dejaste y por todo lo que alguna vez compartimos. Espero que la vida te regale muchas alegrías y que encuentres todo aquello que te haga sentir plena y feliz.</p>
+            
+            <p>Cuídate mucho, Antonella.</p>
+            
+            <p class="signature">Con cariño,<br><strong>Stiven ❤️</strong></p>
+        </div>
+
+        <!-- SECCIÓN DE INTERACCIÓN -->
+        <div class="forgiveness-section">
+            <p class="question-text">¿Me perdonas Anto?</p>
+            
+            <img src="rata.jpg" alt="Meme Rata Triste" class="meme-img">
+            
+            <div class="btn-group">
+                <button id="btn-si" class="btn-choice" onclick="acceptForgiveness()">Si</button>
+                <button id="btn-no" class="btn-choice" onclick="shrinkNoButton()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA 3: MENSAJE DE AGRADECIMIENTO FINAL + REPRODUCTOR VISIBLE -->
+    <div id="success-content" class="card success-card hidden">
+        <div class="bg-emoji">🥹</div>
+        <div class="heart-icon">❤️</div>
+        <p class="success-text">Gracias por perdonarme no sabes lo feliz que me haces Gracias enserio gracias ❤️.</p>
+        
+        <!-- REPRODUCTOR DE LA SEGUNDA CANCIÓN (VISIBLE PARA EL USUARIO) -->
+        <div class="player-container">
+            <p class="player-text">Esta canción es para ti con mucho cariño</p>
+            <audio id="bg-music-2" src="cancion2.mp3" controls></audio>
+        </div>
+    </div>
+
+    <!-- Script de Confeti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+        function validateDate() {
+            const fechaCorrecta = "2021-03-06"; 
+            const fechaIngresada = document.getElementById("unlock-date").value;
+            const gatekeeper = document.getElementById("gatekeeper");
+            const mainContent = document.getElementById("main-content");
+            const musica1 = document.getElementById("bg-music-1");
+
+            if (fechaIngresada === fechaCorrecta) {
+                gatekeeper.classList.add("hidden");
+                mainContent.classList.remove("hidden");
+                mainContent.classList.add("fade-in");
+                
+                // Empieza a sonar la primera canción (Coldplay)
+                musica1.play().catch(error => console.log("Audio 1 bloqueado:", error));
+            } else {
+                alert("La fecha no coincide. Inténtalo de nuevo.");
+            }
+        }
+
+        let noScale = 1.0;
+
+        function shrinkNoButton() {
+            const noBtn = document.getElementById("btn-no");
+            noScale -= 0.25;
+            
+            if (noScale <= 0.1) {
+                noBtn.style.display = "none";
+            } else {
+                noBtn.style.transform = `scale(${noScale})`;
+            }
+        }
+
+        function acceptForgiveness() {
+            const musica1 = document.getElementById("bg-music-1");
+            
+            // 1. Detener por completo la canción de Coldplay
+            musica1.pause();
+            musica1.currentTime = 0;
+
+            // 2. Cambiar de pantalla a la de éxito
+            document.getElementById("main-content").classList.add("hidden");
+            const successContent = document.getElementById("success-content");
+            successContent.classList.remove("hidden");
+            successContent.classList.add("fade-in");
+            
+            // Efecto visual de celebración con confeti
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.85 }
+                });
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.85 }
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+</html>
